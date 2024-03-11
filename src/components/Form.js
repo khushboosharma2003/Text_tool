@@ -13,7 +13,6 @@ import React, { useState } from 'react'
     //     setText(newnum);
     // }
     function handleclick() {
-       
         let newText = text.toUpperCase();
         setText(newText);
         props.showalert("Converted to Uppercase ." , 'success')
@@ -43,6 +42,17 @@ import React, { useState } from 'react'
         setText(event.target.value);
         // props.showalert("Content has been changed ." , 'warning')
     }
+    function handlespeech()
+    {
+        let textbox = text;
+        let synth =window.speechSynthesis;
+        let voice=new SpeechSynthesisUtterance(`${textbox}`);
+        let sounds =synth.getVoices();
+        console.log(sounds);
+        // voice.voice=sounds[10];
+        synth.speak(voice);
+
+    }
     function handleclear()
     {
          setText(' ');
@@ -55,14 +65,15 @@ import React, { useState } from 'react'
                 <h1>TEXT - Counter , Uppercase ,Lowercase , Copy </h1>
                 <div className="mb-3">
                     <label htmlFor="exampleFormControlTextarea1" className="form-label">{props.text}</label>
-                    <textarea placeholder='enter text here ' className="form-control " onChange={handlechange} value={text} id="exampleFormControlTextarea1" rows="5"></textarea>
+                    <textarea placeholder='enter text here '  className="form-control " onChange={handlechange} value={text} id="exampleFormControlTextarea1" rows="5"></textarea>
                     <button onClick={handleclick} disabled={text.length===0} className='btn btn-primary mt-5 mx-4'> CONVERT TO UPPERCASE </button>
                     <button onClick={handleLOWclick} disabled={text.length===0} className='btn btn-primary mt-5 mx-4'> CONVERT TO LOWERCASE </button>
                     {/* <br /> */}
                     <button onClick={handleCopy} disabled={text.length===0} className='btn btn-primary mt-5 mx-4'> COPY TEXT </button>
                     <button onClick={handleSpace} disabled={text.length===0} className='btn btn-primary mt-5 mx-4'> REMOVE SPACE </button>
+                    <button onClick={handlespeech} disabled={text.length===0} className='btn btn-primary mt-5 mx-4'> TEXT TO SPEECH </button>
                     <button onClick={handleclear} disabled={text.length===0} className='btn btn-danger mt-5 mx-4'> CLEAR </button>
-                    {/* <button onClick={handledbl} className='btn btn-danger mt-5 mx-4'> DOUBLE NUMBER </button> */}
+                 
                 </div>
             </div>
             <div className='container' >

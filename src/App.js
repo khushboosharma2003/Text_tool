@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
-import Form from './components/Form';
-import About from './components/About';
 import Alert from './components/Alert';
 import React from "react";
+import Form from './components/Form';
 import {
   BrowserRouter as Router,
   Routes, Route
@@ -16,12 +15,12 @@ function App() {
 
       setMode('dark');
       document.body.style.backgroundColor = '#0e141ee8';
-      showalert("Dark mode has enables ", 'success');
+      showalert("Dark mode has enabled ", 'success');
     }
     else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
-      showalert("light mode has enables ", 'success');
+      showalert("light mode has enabled ", 'success');
 
     }
   }
@@ -46,9 +45,7 @@ function App() {
         <Navbar title="COUNTER" mode={mode} chngMode={chngMode} />
         <Alert alert={alert} />
         <Routes>
-          <Route exact path="/about" element={<About mode={mode} />}>
-
-          </Route>
+        
           <Route exact path="/" element={<Form text="ENTER THE TEXT TO ANALYSE" showalert={showalert} mode={mode} />}>
 
           </Route>
